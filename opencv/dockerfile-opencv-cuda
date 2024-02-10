@@ -69,8 +69,8 @@ RUN  cmake -D OPENCV_ENABLE_NONFREE=ON \
     -D WITH_QT=OFF \
     -D BUILD_opencv_python3=ON \
     -D BUILD_opencv_python2=OFF \
-    -D HAVE_opencv_python3=ON   ..\
-    && make -j8 && make install
+    -D HAVE_opencv_python3=ON ..
+RUN make -j8 && make install
 
 
 RUN apt-get clean \
