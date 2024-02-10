@@ -1,0 +1,78 @@
+FROM  nvidia/cuda:11.1.1-cudnn8-devel-ubuntu18.04 as opencv_build
+
+ARG opencv_version=4.7.0
+ARG AI_PY_VERSION=3.8
+
+RUN apt update 
+RUN apt install -y curl
+
+RUN apt install -y \
+    wget \
+    git \
+    cmake \
+    build-essential \
+    libtbb2 libtbb-dev libjpeg-dev libpng-dev libtiff-dev libdc1394-22-dev\
+    libglib2.0-0 \
+    libsm6 \
+    libxext6 \
+    libxrender-dev \
+    ffmpeg ninja-build \
+    libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
+
+
+
+# 下载并安装Miniconda
+RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /root/miniconda.sh && \
+    bash /root/miniconda.sh -b -p /root/miniconda && \
+    rm /root/miniconda.sh && \
+    /root/miniconda/bin/conda clean -ya
+
+# 将Conda的bin路径添加到PATH中
+ENV PATH="/root/miniconda/bin:$PATH"
+ENV CONDA_BIN=/root/miniconda/bin/conda
+
+
+RUN /root/miniconda/bin/conda create --name ai python=${AI_PY_VERSION} -y
+ENV AI_PY_PATH = /root/miniconda/envs/ai
+
+RUN $CONDA_BIN install numpy -y
+
+RUN cd /root \
+    && git clone --branch ${opencv_version} https://github.com/opencv/opencv.git \
+    && git clone --branch ${opencv_version} https://github.com/opencv/opencv_contrib.git \
+    && mkdir build && cd build \
+    && pip uninstall opencv-python -y \
+    && cmake -D OPENCV_ENABLE_NONFREE=ON \
+    -D BUILD_opencv_python3=ON \
+    -D WITH_CUDA=ON \
+    -D WITH_TBB=ON \
+    -D ENABLE_FAST_MATH=1 \
+    -D CUDA_FAST_MATH=1 \
+    -D WITH_CUBLAS=1 \
+    -D OPENCV_GENERATE_PKGCONFIG=ON \
+    -D OPENCV_EXTRA_MODULES_PATH=/root/opencv_contrib/modules \
+    -D PYTHON3_EXECUTABLE=$AI_PY_PATH/bin/python3 \
+    -D PYTHON3_INCLUDE_DIR=$AI_PY_PATH/include/python${AI_PY_VERSION} \
+    -D PYTHON3_LIBRARY=$AI_PY_PATH/lib/libpython${AI_PY_VERSION}.so \
+    -D PYTHON3_NUMPY_INLCUDE_DIS=$AI_PY_PATH/lib/python${AI_PY_VERSION}/site-packages/numpy/core/include \
+    -D PYTHON3_PACKAGES_PATH=$AI_PY_PATH/lib/python${AI_PY_VERSION}/site-packages \
+    -D CUDA_CUDA_LIBRARY=/usr/local/cuda/lib64/stubs/libcuda.so \
+    -D WITH_WEBP=OFF \
+    -D WITH_OPENCL=OFF \
+    -D ETHASHLCL=OFF \
+    -D ENABLE_CXX11=ON \
+    -D BUILD_EXAMPLES=OFF \
+    -D OPENCV_ENABLE_NONFREE=ON \
+    -D WITH_OPENGL=ON \
+    -D WITH_GSTREAMER=ON \
+    -D WITH_V4L=ON \
+    -D WITH_QT=OFF \
+    -D BUILD_opencv_python3=ON \
+    -D BUILD_opencv_python2=OFF \
+    -D HAVE_opencv_python3=ON   ..\
+    && make -j8 && make install
+
+
+RUN apt-get clean \
+    && rm -rf /var/lib/apt/lists/*
+
