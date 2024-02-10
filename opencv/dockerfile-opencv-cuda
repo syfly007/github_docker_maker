@@ -34,22 +34,14 @@ ENV AI_PY_PATH = /root/miniconda/envs/ai
 
 RUN $CONDA_BIN install numpy -y
 
-RUN cd /root
-# RUN git clone --branch ${opencv_version} https://github.com/opencv/opencv.git
-# RUN git clone --branch ${opencv_version} https://github.com/opencv/opencv_contrib.git
-# RUN cd opencv
-# RUN mkdir build
-# RUN cd build
-RUN git clone https://github.com/opencv/opencv.git
-RUN git clone https://github.com/opencv/opencv_contrib.git
-RUN cd /root/opencv 
-RUN git checkout ${opencv_version}
-RUN cd /root/opencv_contrib 
-RUN git checkout ${opencv_version} 
-RUN mkdir -p /root/opencv/build
-RUN cd /root/opencv/build
-RUN pip uninstall opencv-python -y
-RUN  cmake -D OPENCV_ENABLE_NONFREE=ON \
+RUN cd /root \
+    && git clone --branch ${opencv_version} https://github.com/opencv/opencv.git \
+    && git clone --branch ${opencv_version} https://github.com/opencv/opencv_contrib.git \
+    && cd opencv \
+    && mkdir build \
+    && cd build \
+    && pip uninstall opencv-python -y \
+    && cmake -D OPENCV_ENABLE_NONFREE=ON \
     -D BUILD_opencv_python3=ON \
     -D WITH_CUDA=ON \
     -D WITH_TBB=ON \
@@ -76,8 +68,8 @@ RUN  cmake -D OPENCV_ENABLE_NONFREE=ON \
     -D WITH_QT=OFF \
     -D BUILD_opencv_python3=ON \
     -D BUILD_opencv_python2=OFF \
-    -D HAVE_opencv_python3=ON ..
-RUN make -j$(nproc) && make install
+    -D HAVE_opencv_python3=ON .. \
+    && make -j$(nproc) && make install
 
 
 RUN apt-get clean \
