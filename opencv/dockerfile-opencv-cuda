@@ -19,8 +19,6 @@ RUN apt install -y \
     ffmpeg ninja-build \
     libgtk2.0-dev pkg-config libavcodec-dev libavformat-dev libswscale-dev
 
-
-
 # 下载并安装Miniconda
 RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /root/miniconda.sh && \
     bash /root/miniconda.sh -b -p /root/miniconda && \
