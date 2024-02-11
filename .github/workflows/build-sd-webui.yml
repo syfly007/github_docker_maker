@@ -37,7 +37,7 @@ jobs:
     
     - name: Get Current Timestamp
       id: current-time
-      run: echo "TIMESTAMP=$(date +'%Y-%m-%d-%H%M%S')" >> $GITHUB_ENV
+      run: echo "TIMESTAMP=$(date +'%Y%m%d_%H%M%S')" >> $GITHUB_ENV
     
     - name: Build and Push Docker image
       uses: docker/build-push-action@v2
