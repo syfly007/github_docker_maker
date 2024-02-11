@@ -27,6 +27,6 @@ jobs:
       uses: docker/build-push-action@v2
       with:
         context: ./opencv
-        file: ./opencv/dockerfile-sd-webui
+        file: ./stable-diffusion-webui/dockerfile-sd-webui
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/stable-difusion-webui:${{ env.TIMESTAMP }}
