@@ -11,10 +11,8 @@ jobs:
       uses: actions/checkout@v2
 
     - name: Free Disk Space
-      run: 
-        chmod +x ./tools/free_disk_space.sh
-        bash ./tools/free_disk_space.sh
-
+      run: bash ./tools/free_disk_space.sh
+        
     - name: Print system information
       run: |
         echo "Operating System:"
