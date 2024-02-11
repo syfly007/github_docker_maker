@@ -9,6 +9,20 @@ jobs:
     steps:
     - name: Check out code
       uses: actions/checkout@v2
+
+    - name: Free Disk Space
+      run: bash ./tools/free_disk_space.sh
+        
+    - name: Print system information
+      run: |
+        echo "Operating System:"
+        uname -a
+        echo "CPU details:"
+        lscpu
+        echo "Memory details:"
+        free -h
+        echo "Disk details:"
+        df -h
     
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
@@ -21,7 +35,7 @@ jobs:
     
     - name: Get Current Timestamp
       id: current-time
-      run: echo "TIMESTAMP=$(date +'%Y-%m-%d-%H%M%S')" >> $GITHUB_ENV
+      run: echo "TIMESTAMP=$(date +'%Y%m%d_%H%M%S')" >> $GITHUB_ENV
     
     - name: Build and Push Docker image
       uses: docker/build-push-action@v2
@@ -30,3 +44,10 @@ jobs:
         file: ./opencv/dockerfile-opencv-cuda
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/opencv-cuda:${{ env.TIMESTAMP }}
+
+    - name: Print Disk information
+      run: |
+        echo "Disk details:"
+        df -h
+        echo "Docker images:"
+        docker images
