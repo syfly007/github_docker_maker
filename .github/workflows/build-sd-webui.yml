@@ -7,6 +7,12 @@ jobs:
   build-and-push:
     runs-on: ubuntu-latest
     steps:
+    - name: Check out code
+      uses: actions/checkout@v2
+
+    - name: Free Disk Space
+      run: bash ./tools/free_disk_space.sh
+
     - name: Print system information
       run: |
         echo "Operating System:"
@@ -18,9 +24,6 @@ jobs:
         echo "Disk details:"
         df -h
 
-    - name: Check out code
-      uses: actions/checkout@v2
-    
     - name: Set up Docker Buildx
       uses: docker/setup-buildx-action@v1
       
