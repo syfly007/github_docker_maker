@@ -36,31 +36,31 @@ RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git /home/
 
 WORKDIR /home/sd/stable-diffusion-webui/repositories
 # install repositories
-RUN git clone https://github.com/Stability-AI/stablediffusion.git /home/sd/stable-diffusion-webui/repositories/stable-diffusion-stability-ai
-RUN git clone https://github.com/sczhou/CodeFormer.git
-RUN git clone https://github.com/salesforce/BLIP.git
-RUN git clone https://github.com/crowsonkb/k-diffusion.git
-RUN git clone https://github.com/pharmapsychotic/clip-interrogator
-RUN git clone https://github.com/Stability-AI/generative-models
+RUN git clone https://github.com/Stability-AI/stablediffusion.git /home/sd/stable-diffusion-webui/repositories/stable-diffusion-stability-ai && \
+    git clone https://github.com/sczhou/CodeFormer.git && \
+    git clone https://github.com/salesforce/BLIP.git && \
+    git clone https://github.com/crowsonkb/k-diffusion.git && \
+    git clone https://github.com/pharmapsychotic/clip-interrogator && \
+    git clone https://github.com/Stability-AI/generative-models
 
 WORKDIR /home/sd/stable-diffusion-webui/extensions
 # install plugins
-RUN git clone https://github.com/AlUlkesh/stable-diffusion-webui-images-browser
-RUN git clone https://github.com/camenduru/sd-civitai-browser
-RUN git clone https://github.com/butaixianran/Stable-Diffusion-Webui-Civitai-Helper
-RUN git clone https://github.com/DominikDoom/a1111-sd-webui-tagcomplete
-RUN git clone https://github.com/deforum-art/deforum-for-automatic1111-webui.git
-RUN git clone https://github.com/Mikubill/sd-webui-controlnet.git
-RUN git clone https://github.com/Physton/sd-webui-prompt-all-in-one
+RUN git clone https://github.com/AlUlkesh/stable-diffusion-webui-images-browser && \
+    git clone https://github.com/camenduru/sd-civitai-browser && \
+    git clone https://github.com/butaixianran/Stable-Diffusion-Webui-Civitai-Helper && \
+    git clone https://github.com/DominikDoom/a1111-sd-webui-tagcomplete && \
+    git clone https://github.com/deforum-art/deforum-for-automatic1111-webui.git && \
+    git clone https://github.com/Mikubill/sd-webui-controlnet.git && \
+    git clone https://github.com/Physton/sd-webui-prompt-all-in-one
 
 # 进入 stable-diffusion-webui 目录并执行 webui.sh 脚本
 WORKDIR /home/sd/stable-diffusion-webui
 
-RUN pip3 install --upgrade pip
-RUN pip install -r requirements_versions.txt
-RUN pip install -r repositories/CodeFormer/requirements.txt
-RUN pip install -r repositories/k-diffusion/requirements.txt
-RUN pip install xformers
-RUN pip install httpx[socks]
+RUN pip3 install --upgrade pip && \
+    pip install -r requirements_versions.txt && \
+    pip install -r repositories/CodeFormer/requirements.txt && \
+    pip install -r repositories/k-diffusion/requirements.txt && \
+    pip install xformers && \
+    pip install httpx[socks]
 
 EXPOSE 7860
