@@ -58,10 +58,10 @@ WORKDIR /home/sd/stable-diffusion-webui
 
 RUN pip3 install --upgrade pip
 
-RUN pip install -r requirements_versions.txt && \
-    pip install -r repositories/CodeFormer/requirements.txt && \
-    pip install -r repositories/k-diffusion/requirements.txt && \
-    pip install xformers && \
-    pip install httpx[socks]
+RUN pip install -r requirements_versions.txt
+RUN pip install -r repositories/CodeFormer/requirements.txt
+RUN pip install -r repositories/k-diffusion/requirements.txt
+RUN pip install xformers
+RUN pip install httpx[socks]
 
 EXPOSE 7860
