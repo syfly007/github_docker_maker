@@ -44,3 +44,8 @@ jobs:
         file: ./stable-diffusion-webui/dockerfile-sd-webui
         push: true
         tags: ${{ secrets.DOCKERHUB_USERNAME }}/stable-difusion-webui:${{ env.TIMESTAMP }}
+
+    - name: Print Disk information
+      run: |
+        echo "Disk details:"
+        df -h

@@ -44,4 +44,6 @@ df -h
 echo "Removing large directories"
 # deleting 15GB
 rm -rf /usr/share/dotnet/
+#free 10 GB
+rm -rf /opt/hostedtoolcache
 df -h
