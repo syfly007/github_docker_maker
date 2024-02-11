@@ -66,7 +66,4 @@ RUN --mount=type=cache,target=/root/.cache/pip \
     pip install xformers && \
     pip install httpx[socks]
 
-#记录当前Dockerfile版本
-COPY Dockerfile /home/sd/stable-diffusion-webui/Dockerfile
-
 EXPOSE 7860
