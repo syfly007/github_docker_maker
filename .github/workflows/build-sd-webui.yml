@@ -43,7 +43,9 @@ jobs:
         context: ./stable-diffusion-webui
         file: ./stable-diffusion-webui/dockerfile-sd-webui
         push: true
-        tags: ${{ secrets.DOCKERHUB_USERNAME }}/stable-difusion-webui:${{ env.TIMESTAMP }}
+        tags: |
+          ${{ secrets.DOCKERHUB_USERNAME }}/stable-difusion-webui:${{ env.TIMESTAMP }},
+          ${{ secrets.DOCKERHUB_USERNAME }}/stable-difusion-webui:latest
 
     - name: Print Disk information
       run: |
