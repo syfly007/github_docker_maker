@@ -1,6 +1,8 @@
-FROM  nvidia/cuda:11.1.1-cudnn8-devel-ubuntu18.04 as opencv_build
-ARG opencv_version=4.7.0
-ARG AI_PY_VERSION=3.8
+ARG NVIDIA_CUDA_VERSION="11.1.1"
+FROM nvidia/cuda:${NVIDIA_CUDA_VERSION}-cudnn8-devel-ubuntu18.04
+
+ARG OPENCV_VERSION="4.7.0"
+ARG AI_PY_VERSION="3.8"
 
 RUN apt update 
 RUN apt install -y \
@@ -34,8 +36,8 @@ ENV AI_PY_PATH = /root/miniconda/envs/ai
 RUN $CONDA_BIN install numpy -y
 
 RUN cd /root \
-    && git clone --branch ${opencv_version} https://github.com/opencv/opencv.git \
-    && git clone --branch ${opencv_version} https://github.com/opencv/opencv_contrib.git \
+    && git clone --branch ${OPENCV_VERSION} https://github.com/opencv/opencv.git \
+    && git clone --branch ${OPENCV_VERSION} https://github.com/opencv/opencv_contrib.git \
     && cd opencv \
     && mkdir build \
     && cd build \
