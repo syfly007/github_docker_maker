@@ -21,7 +21,7 @@ ip route add $container_ip dev macvlan_host
 # Docker安装运行
 docker network create -d macvlan --subnet=$gateway_ip/24 --gateway=$gateway_ip -o parent=$host_interface macvlan
 
-docker run --restart=always --name=shellclash_docker --network=macvlan --ip=$container_ip --cap-add=NET_ADMIN -d openwrtorg/rootfs:x86-64
+docker run --restart=always --name=shellclash_docker --network=macvlan --ip=$container_ip --cap-add=NET_ADMIN -d openwrt/rootfs:x86-64
 
 docker exec -it shellclash_docker sh -l
 
