@@ -1,0 +1,26 @@
+# github：https://github.com/sub-store-org/Sub-Store
+# docker部署说明：https://surge.tel/22/2953/ 
+# 
+# param：
+# SUB_STORE_FRONTEND_BACKEND_PATH：后端url路径
+# 
+# run:
+# echo SUB_STORE_FRONTEND_BACKEND_PATH=/backend_path > .env
+# docker compose up -d
+
+version: '3.8'
+
+services:
+  sub-store:
+    image: xream/sub-store
+    container_name: sub-store
+    restart: always
+    environment:
+      SUB_STORE_CRON: "0 2 * * *"
+      SUB_STORE_FRONTEND_BACKEND_PATH: $SUB_STORE_FRONTEND_BACKEND_PATH
+    ports:
+      - "3001:3001"
+    volumes:
+      - "./sub-store-data:/opt/app/data"
+    tty: true
+    stdin_open: true
