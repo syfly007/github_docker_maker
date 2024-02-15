@@ -2,11 +2,14 @@
 # docker部署说明：https://surge.tel/22/2953/ 
 # 
 # param：
-# SUB_STORE_FRONTEND_BACKEND_PATH：后端url路径
+# SUB_STORE_FRONTEND_BACKEND_PATH：后端url路径，自行修改为其他随机字符串
 # 
 # run:
 # echo SUB_STORE_FRONTEND_BACKEND_PATH=/backend_path > .env
 # docker compose up -d
+#
+# 本地访问地址：
+# http://127.0.0.1:3001?api=http://127.0.0.1:3001/backend_path
 
 version: '3.8'
 

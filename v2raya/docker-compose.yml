@@ -1,3 +1,7 @@
+#linux环境
+#git地址：https://github.com/v2rayA/v2rayA
+#官方文档：https://v2raya.org/docs/prologue/installation/docker/
+
 version: '3.8'
 services:
   v2raya:
@@ -16,9 +20,3 @@ services:
       - /lib/modules:/lib/modules:ro
       - /etc/resolv.conf:/etc/resolv.conf
       - /etc/v2raya:/etc/v2raya
-
-#等效命令
-# docker run -d   --restart=always   --privileged   --network=host   --name v2raya   -e V2RAYA_LOG_FILE=/tmp/v2raya.log   -e V2RAYA_V2RAY_BIN=/usr/local/bin/xray   -e V2RAYA_NFTABLES_SUPPORT=off   -e IPTABLES_MODE=legacy   -v /lib/modules:/lib/modules:ro   -v /etc/resolv.conf:/etc/resolv.conf   -v /etc/v2raya:/etc/v2raya   mzz2017/v2raya
-
-#git地址：https://github.com/v2rayA/v2rayA
-#官方文档：https://v2raya.org/docs/prologue/installation/docker/

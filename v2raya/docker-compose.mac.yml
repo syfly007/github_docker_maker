@@ -1,0 +1,19 @@
+#linux环境
+#git地址：https://github.com/v2rayA/v2rayA
+#官方文档：https://v2raya.org/docs/prologue/installation/docker/
+
+version: '3.8'
+
+services:
+  v2raya:
+    image: mzz2017/v2raya
+    container_name: v2raya
+    restart: always
+    ports:
+      - "2017:2017"
+      - "20170-20172:20170-20172"
+    environment:
+      V2RAYA_V2RAY_BIN: "/usr/local/bin/xray"
+      V2RAYA_LOG_FILE: "/tmp/v2raya.log"
+    volumes:
+      - "./etc/v2raya:/etc/v2raya"
