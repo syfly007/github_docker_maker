@@ -1,3 +1,6 @@
+# 支持阿里云 https证书申请，还未测试
+# 
+# 
 # run:
 # docker volume create caddy_data
 # vi Caddyfile #config Caddyfile
@@ -5,16 +8,19 @@
 
 # Caddyfile example:
 # 
-# www.example.top {
-#     reverse_proxy 127.0.0.1:12345
+# www.example.com {
+#   reverse_proxy 192.168.99.123:5001
+
+#   tls {
+#     dns lego_deprecated alidns
+#   }
 # }
 
 version: "3.7"
 
 services:
   caddy:
-    # image: caddy:latest
-    image: caddy:2.6.2
+    image: theelves/caddy-lego:latest
     container_name: caddy
     restart: unless-stopped
     network_mode: host
