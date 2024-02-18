@@ -1,0 +1,14 @@
+# github:https://github.com/Chasing66/x-ui/blob/main/docs/README_zh.md
+
+version: "3.9"
+services:
+  xui:
+    # image: enwaiax/x-ui
+    image: enwaiax/x-ui:alpha-zh
+    # image: enwaiax/x-ui:beta
+    container_name: xui
+    volumes:
+      - $PWD/db/:/etc/x-ui/
+      - $PWD/cert/:/root/cert/
+    restart: unless-stopped
+    network_mode: host
