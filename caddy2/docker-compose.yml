@@ -8,7 +8,8 @@ version: "3.7"
 services:
   caddy:
     # image: caddy:latest
-    image: theelves/caddy-lego:latest
+    # image: theelves/caddy-lego:latest
+    image: caddy:2.6.2
     container_name: caddy
     restart: unless-stopped
     cap_add:
