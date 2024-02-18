@@ -3,6 +3,12 @@
 # vi Caddyfile #config Caddyfile
 # docker compose up -d
 
+# Caddyfile example:
+# 
+# www.example.top {
+#     reverse_proxy 127.0.0.1:12345
+# }
+
 version: "3.7"
 
 services:
@@ -12,12 +18,13 @@ services:
     image: caddy:2.6.2
     container_name: caddy
     restart: unless-stopped
-    cap_add:
-      - NET_ADMIN
-    ports:
-      - "80:80"
-      - "443:443"
-      - "443:443/udp"
+    network_mode: host
+    # cap_add:
+    #   - NET_ADMIN
+    # ports:
+    #   - "80:80"
+    #   - "443:443"
+    #   - "443:443/udp"
     volumes:
       - $PWD/Caddyfile:/etc/caddy/Caddyfile
       - $PWD/site:/srv
