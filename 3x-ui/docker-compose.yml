@@ -2,9 +2,10 @@ version: "3"
 
 services:
   3x-ui:
+    image: ghcr.io/mhsanaei/3x-ui:v2.1.2
     # image: ghcr.io/mhsanaei/3x-ui:latest
     # image: lovechen/3x-ui
-    image: enkidu6/3x-ui
+    # image: enkidu6/3x-ui
     container_name: 3x-ui
     hostname: yourhostname
     volumes:
