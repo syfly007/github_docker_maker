@@ -1,4 +1,6 @@
 # github:https://github.com/Chasing66/x-ui/blob/main/docs/README_zh.md
+# port:54321
+# admin/admin 
 
 version: "3.9"
 services:

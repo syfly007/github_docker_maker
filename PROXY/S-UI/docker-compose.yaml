@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  s-ui:
+    image: alireza7/s-ui:latest
+    container_name: s-ui
+    restart: unless-stopped
+    ports:
+      - "2095:2095"
+      - "443:443"
+      - "80:80"
+    volumes:
+      - $PWD/db/:/usr/local/s-ui/db/
+      - $PWD/cert/:/root/cert/
