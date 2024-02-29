@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   subweb:
-    image: subweb-local:latest
+    image: careywong/subweb:latest
     container_name: subweb
     restart: always
     ports:
