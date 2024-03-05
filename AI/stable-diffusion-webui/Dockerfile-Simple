@@ -46,18 +46,19 @@ RUN git clone https://github.com/AlUlkesh/stable-diffusion-webui-images-browser 
 # 进入 stable-diffusion-webui 目录并执行 webui.sh 脚本
 WORKDIR /home/sd/stable-diffusion-webui
 
-# RUN pip3 install --upgrade pip && \
-#     pip install -r requirements_versions.txt && \
-#     pip install -r repositories/CodeFormer/requirements.txt && \
-#     pip install -r repositories/k-diffusion/requirements.txt && \
-#     pip install xformers && \
-#     pip install httpx[socks]
+RUN pip3 install --upgrade pip && \
+    pip install -r requirements_versions.txt && \
+    pip install -r repositories/CodeFormer/requirements.txt && \
+    pip install -r repositories/k-diffusion/requirements.txt && \
+    pip install xformers && \
+    pip install httpx[socks] && \
+    pip3 cache purge
 
-RUN pip3 install --upgrade pip
-RUN pip install -r requirements_versions.txt
-RUN pip install -r repositories/CodeFormer/requirements.txt
-RUN pip install -r repositories/k-diffusion/requirements.txt
-RUN pip install xformers
-RUN pip install httpx[socks]
+RUN rm -Rf \
+  /home/sd/.cache \
+  /tmp \
+  /var/lib/apt/lists/* \
+  /var/tmp/* && \
+  mkdir -m 1777 /tmp
 
 EXPOSE 7860
