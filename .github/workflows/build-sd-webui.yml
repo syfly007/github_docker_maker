@@ -6,7 +6,7 @@ on:
       NVIDIA_CUDA_VERSION:
         description: 'NVIDIA CUDA Version'
         required: false
-        default: '12.1.1'
+        default: '11.7.1'
 
 jobs:
   build-and-push:
