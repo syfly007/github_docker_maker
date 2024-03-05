@@ -23,7 +23,7 @@ USER sd
 WORKDIR /home/sd/
 
 # 下载并安装Miniconda
-RUN wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
+RUN wget https://repo.anaconda.com/miniconda/Miniconda3-py39_24.1.2-0-Linux-x86_64.sh -O ~/miniconda.sh && \
     bash ~/miniconda.sh -b -p $HOME/miniconda && \
     rm ~/miniconda.sh && \
     /home/sd/miniconda/bin/conda clean -ya
