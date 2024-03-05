@@ -69,7 +69,7 @@ RUN rm -Rf \
   /tmp \
   /var/lib/apt/lists/* \
   /root/miniconda/pkgs/* \
-  /var/tmp/* && \
-  mkdir -m 1777 /tmp
+  /var/tmp/*
+RUN mkdir -m 1777 /tmp
 
 EXPOSE 7860
