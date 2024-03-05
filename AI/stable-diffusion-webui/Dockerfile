@@ -4,7 +4,7 @@ FROM nvidia/cuda:${NVIDIA_CUDA_VERSION}-cudnn8-runtime-ubuntu22.04
 
 RUN apt-get clean && \
     apt-get update && \
-    apt-get install -y git python3 python3-venv libgl1 libglib2.0-0 sudo wget vim fonts-dejavu-core rsync moreutils \
+    apt-get install -y git python3 python3-venv libgl1 libglib2.0-0 sudo wget vim fonts-dejavu-core rsync moreutils aria2\
     ffmpeg libglfw3-dev libgles2-mesa-dev pkg-config libcairo2 libcairo2-dev build-essential && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
