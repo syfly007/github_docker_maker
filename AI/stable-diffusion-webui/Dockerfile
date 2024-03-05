@@ -64,6 +64,7 @@ RUN pip3 install --upgrade pip && \
     pip install httpx[socks] && \
     pip3 cache purge
 
+USER root
 RUN rm -Rf \
   /home/sd/.cache \
   /tmp \
@@ -71,5 +72,6 @@ RUN rm -Rf \
   /root/miniconda/pkgs/* \
   /var/tmp/*
 RUN mkdir -m 1777 /tmp
+USER sd
 
 EXPOSE 7860
