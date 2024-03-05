@@ -2,6 +2,11 @@ name: Stable Diffusion WebUI Docker Image Build and Push
 
 on:
   workflow_dispatch:
+    inputs:
+      NVIDIA_CUDA_VERSION:
+        description: 'NVIDIA CUDA Version'
+        required: false
+        default: '12.1.1'
 
 jobs:
   build-and-push:
@@ -44,8 +49,10 @@ jobs:
         file: ./AI/stable-diffusion-webui/Dockerfile
         push: true
         tags: |
-          ${{ secrets.DOCKERHUB_USERNAME }}/stable-difusion-webui:${{ env.TIMESTAMP }},
+          ${{ secrets.DOCKERHUB_USERNAME }}/stable-difusion-webui:cuda_${{ github.event.inputs.NVIDIA_CUDA_VERSION}}_${{ env.TIMESTAMP }},
           ${{ secrets.DOCKERHUB_USERNAME }}/stable-difusion-webui:latest
+        build-args: |
+          NVIDIA_CUDA_VERSION=${{ github.event.inputs.NVIDIA_CUDA_VERSION }}
 
     - name: Print Disk information
       run: |

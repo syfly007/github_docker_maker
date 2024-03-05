@@ -1,10 +1,10 @@
 # 使用nvidia/cuda作为基础镜像
-# FROM nvidia/cuda:11.8.0-devel-ubuntu22.04
-FROM nvidia/cuda:11.7.1-cudnn8-runtime-ubuntu22.04
+ARG NVIDIA_CUDA_VERSION="12.1.1"
+FROM nvidia/cuda:${NVIDIA_CUDA_VERSION}-cudnn8-runtime-ubuntu22.04
 
 RUN apt-get clean && \
     apt-get update && \
-    apt-get install -y git python3 python3-venv libgl1 libglib2.0-0 sudo wget vim fonts-dejavu-core rsync jq moreutils aria2 \
+    apt-get install -y git python3 python3-venv libgl1 libglib2.0-0 sudo wget vim fonts-dejavu-core rsync jq moreutils \
     ffmpeg libglfw3-dev libgles2-mesa-dev pkg-config libcairo2 libcairo2-dev build-essential && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
