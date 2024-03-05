@@ -4,8 +4,7 @@ FROM nvidia/cuda:${NVIDIA_CUDA_VERSION}-cudnn8-runtime-ubuntu22.04
 
 RUN apt-get clean && \
     apt-get update && \
-    apt-get install -y git python3 python3-venv libgl1 libglib2.0-0 sudo wget vim fonts-dejavu-core rsync moreutils aria2 \
-    ffmpeg libglfw3-dev libgles2-mesa-dev pkg-config libcairo2 libcairo2-dev build-essential && \
+    apt-get install -y wget git python3 python3-venv libgl1 libglib2.0-0 && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
@@ -21,15 +20,6 @@ USER sd
 
 # 定义工作目录
 WORKDIR /home/sd/
-
-# 下载并安装Miniconda
-RUN wget https://repo.anaconda.com/miniconda/Miniconda3-py39_24.1.2-0-Linux-x86_64.sh -O ~/miniconda.sh && \
-    bash ~/miniconda.sh -b -p $HOME/miniconda && \
-    rm ~/miniconda.sh && \
-    /home/sd/miniconda/bin/conda clean -ya
-
-# 将Conda的bin路径添加到PATH中
-ENV PATH="/home/sd/miniconda/bin:$PATH"
 
 # 克隆stable-diffusion-webui
 RUN git clone https://github.com/AUTOMATIC1111/stable-diffusion-webui.git /home/sd/stable-diffusion-webui
