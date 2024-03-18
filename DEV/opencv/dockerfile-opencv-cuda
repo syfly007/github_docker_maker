@@ -31,7 +31,7 @@ ENV CONDA_BIN=/root/miniconda/bin/conda
 
 
 RUN /root/miniconda/bin/conda create --name ai python=${AI_PY_VERSION} -y
-ENV AI_PY_PATH = /root/miniconda/envs/ai
+ENV AI_PY_PATH=/root/miniconda/envs/ai
 
 RUN $CONDA_BIN install numpy -y
 
