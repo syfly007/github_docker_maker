@@ -8,7 +8,7 @@ fi
 
 ORIGINAL_IMAGE_NAME=$1
 TIMESTAMP=$(date +%Y%m%d%H%M%S)
-CONTAINER_NAME="${ORIGINAL_IMAGE_NAME//:/_}_thin"
+CONTAINER_NAME=$(echo "$ORIGINAL_IMAGE_NAME" | sed 's/[:/]/_/g')_thin
 DOCKERFILE_NAME="Dockerfile-${ORIGINAL_IMAGE_NAME//:/_}-thin-${TIMESTAMP}"
 BACKUP_IMAGE_NAME="${ORIGINAL_IMAGE_NAME}_backup_${TIMESTAMP}"
 
@@ -74,6 +74,3 @@ rm ${CONTAINER_NAME}.tar
 # 输出新镜像名并保留 Dockerfile 和 tar 文件以供记录
 echo "压缩后的镜像已创建: $ORIGINAL_IMAGE_NAME"
 echo "Dockerfile 已保存为: $DOCKERFILE_NAME"
-
-
-
