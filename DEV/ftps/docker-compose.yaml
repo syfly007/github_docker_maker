@@ -2,6 +2,7 @@ version: '3.8'
 
 services:
   ftps:
+    container_name: ftps  # 设置容器名
     build: .
     ports:
       - "10012:10012"
