@@ -25,6 +25,9 @@ RUN mkdir -p /etc/vsftpd/ssl && \
 # 创建secure_chroot_dir目录
 RUN mkdir -p /var/run/vsftpd/empty
 
+#backup 
+RUN mv /etc/vsftpd.conf /etc/vsftpd/vsftpd.conf.bak
+
 # 配置vsftpd
 COPY vsftpd.conf /etc/vsftpd/vsftpd.conf
 
