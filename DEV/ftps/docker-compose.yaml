@@ -1,0 +1,14 @@
+version: '3.8'
+
+services:
+  ftps:
+    build: .
+    ports:
+      - "10012:10012"
+      - "10000-10012:10000-10012"
+    environment:
+      FTP_USER: ${FTP_USER:-ftpsuser}
+      FTP_PASS: ${FTP_PASS:-ftpsuser}
+      FTP_PORT: ${FTP_PORT:-10012}
+      PASV_MIN_PORT: ${PASV_MIN_PORT:-10000}
+      PASV_MAX_PORT: ${PASV_MAX_PORT:-10012}
