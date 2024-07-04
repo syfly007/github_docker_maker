@@ -3,13 +3,14 @@ version: '3.8'
 services:
   ftps:
     container_name: ftps  # 设置容器名
+    image: ftps-server  # 设置镜像名
     build: .
     ports:
       - "10012:10012"
-      - "10000-10012:10000-10012"
+      - "10000-10010:10000-10010"
     environment:
       FTP_USER: ${FTP_USER:-ftpsuser}
       FTP_PASS: ${FTP_PASS:-ftpsuser}
       FTP_PORT: ${FTP_PORT:-10012}
       PASV_MIN_PORT: ${PASV_MIN_PORT:-10000}
-      PASV_MAX_PORT: ${PASV_MAX_PORT:-10012}
+      PASV_MAX_PORT: ${PASV_MAX_PORT:-10010}
