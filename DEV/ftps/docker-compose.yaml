@@ -18,3 +18,5 @@ services:
     volumes:
       - $(pwd)/ftp_cfg/:/etc/vsftpd/
       - $(pwd)/ftp_data:/home/
+    restart: always
+    
