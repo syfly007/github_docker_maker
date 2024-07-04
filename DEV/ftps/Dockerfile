@@ -7,6 +7,8 @@ ENV FTP_PASS=ftpsuser
 ENV FTP_PORT=10012
 ENV PASV_MIN_PORT=10000
 ENV PASV_MAX_PORT=10010
+ENV PASV_IP=127.0.0.1
+
 
 # 使用国内阿里源
 RUN sed -i 's/archive.ubuntu.com/mirrors.aliyun.com/g' /etc/apt/sources.list
