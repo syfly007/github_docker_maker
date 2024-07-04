@@ -16,6 +16,5 @@ services:
       PASV_MIN_PORT: ${PASV_MIN_PORT:-10000} # 设置被动模式的端口范围最小值，要和端口映射的范围一致
       PASV_MAX_PORT: ${PASV_MAX_PORT:-10010} # 设置被动模式的端口范围最大值，要和端口映射的范围一致
     volumes:
-      - ./ftp_cfg/:/etc/vsftpd/
-      - ./ftp_data:/home/
+      - ./ftp_data:/home/${FTP_USER:-ftpsuser}/data
     restart: always
