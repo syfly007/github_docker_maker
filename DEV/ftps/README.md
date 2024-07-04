@@ -13,17 +13,22 @@ docker compose up -d
 
 ## run in docker
 ```bash
+export FTP_USER=ftpsuser
+export FTP_PASS=ftpsuser
+export PASV_IP=192.168.0.100
+export FTP_PORT=10012
+export PASV_MIN_PORT=10000
+export PASV_MAX_PORT=10010
 docker run -d \
   --name ftps-server \
-  -p 10012:10012 \
-  -p 10000-10010:10000-10010 \
-  -e FTP_USER=ftpsuser \
-  -e FTP_PASS=userpass \
-  -e PASV_IP=192.168.0.100 \
-  -e FTP_PORT=10012 \
-  -e PASV_MIN_PORT=10000 \
-  -e PASV_MAX_PORT=10010 \
-  -v $(pwd)/ftp_cfg:/etc/vsftpd/ \
-  -v $(pwd)/ftp_data:/home/ \
+  -p ${FTP_PORT}:${FTP_PORT} \
+  -p ${PASV_MIN_PORT}-${PASV_MAX_PORT}:${PASV_MIN_PORT}-${PASV_MAX_PORT} \
+  -e FTP_USER=${FTP_USER} \
+  -e FTP_PASS=${FTP_PASS} \
+  -e PASV_IP=${PASV_IP} \
+  -e FTP_PORT=${FTP_PORT} \
+  -e PASV_MIN_PORT=${PASV_MIN_PORT} \
+  -e PASV_MAX_PORT=${PASV_MAX_PORT} \
+  -v $(pwd)/ftp_data:/home/${FTP_USER}/data \
   ftps-server
   ```
