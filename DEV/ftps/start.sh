@@ -15,5 +15,8 @@ fi
 
 mkdir -p /home/${FTP_USER}/data
 
+chown -R ${FTP_USER}:${FTP_USER} /home/${FTP_USER}
+chmod -R 755 /home/${FTP_USER}
+
 # 启动vsftpd
 /usr/sbin/vsftpd /etc/vsftpd/vsftpd.conf
