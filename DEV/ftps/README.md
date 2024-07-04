@@ -23,5 +23,7 @@ docker run -d \
   -e FTP_PORT=10012 \
   -e PASV_MIN_PORT=10000 \
   -e PASV_MAX_PORT=10010 \
+  -v $(pwd)/ftp_cfg:/etc/vsftpd/ \
+  -v $(pwd)/ftp_data:/home/ \
   ftps-server
   ```
